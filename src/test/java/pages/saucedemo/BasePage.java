@@ -16,6 +16,6 @@ public abstract class BasePage {
 
     public void close() {
         if(driver != null)
-            driver.close();
+            driver.quit();
     }
 }

@@ -38,10 +38,4 @@ public class LoginPageTest extends BaseTest {
         boolean isEmptyPassword = loginPage.login("standard_user", "");
         assertFalse(isEmptyPassword);
     }
-
-    @AfterMethod
-    @Override
-    public void close() {
-        loginPage.close();
-    }
 }

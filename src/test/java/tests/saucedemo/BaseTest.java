@@ -26,11 +26,14 @@ public abstract class BaseTest {
         opt.addArguments("--start-maximized");
 
         driver = new ChromeDriver(opt);
-        wait = new WebDriverWait(driver, Duration.of(1000, ChronoUnit.MILLIS));
+        wait = new WebDriverWait(driver, Duration.of(5000, ChronoUnit.MILLIS));
 
         loginPage = new LoginPage(driver, wait);
     }
 
     @AfterMethod
-    public abstract void close();
+    public void quit() {
+        if(driver != null)
+            driver.quit();
+    };
 }
