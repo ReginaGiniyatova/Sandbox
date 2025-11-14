@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.saucedemo.LoginPage;
+import pages.saucedemo.ProductPage;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -18,6 +19,7 @@ public abstract class BaseTest {
     private WebDriverWait wait;
 
     protected LoginPage loginPage;
+    protected ProductPage productPage;
 
     @BeforeMethod
     public void setUp() {
@@ -29,6 +31,7 @@ public abstract class BaseTest {
         wait = new WebDriverWait(driver, Duration.of(5000, ChronoUnit.MILLIS));
 
         loginPage = new LoginPage(driver, wait);
+        productPage = new ProductPage(driver, wait);
     }
 
     @AfterMethod
