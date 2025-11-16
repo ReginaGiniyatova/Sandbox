@@ -8,11 +8,12 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-public class ProductPageTest extends BaseTest {
+public class CartPageTest extends BaseTest {
     @BeforeMethod
     @Override
     public void setUp() {
         super.setUp();
+
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");
     }
@@ -27,16 +28,9 @@ public class ProductPageTest extends BaseTest {
     }
 
     @Test(dataProvider = "productsData")
-    public void addProductsTest(List<String> productNames) {
-        productPage.addToCart(productNames);
-        assertEquals(productPage.getHeader().getCartBadge().getCartItemCount(), productNames.size());
-    }
-
-
-    @Test(dataProvider = "productsData")
-    public void removeAllAddedProducts(List<String> productsNames) {
-        productPage.addToCart(productsNames);
-        productPage.removeFromCart(productsNames);
-        assertEquals(productPage.getHeader().getCartBadge().getCartItemCount(), 0);
+    public void getProductsCount(List<String> productsName) {
+        productPage.addToCart(productsName);
+        productPage.getHeader().getCartBadge().click();
+        assertEquals(cartPage.getProductsName().size(), productsName.size());
     }
 }

@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.saucedemo.CartPage;
 import pages.saucedemo.LoginPage;
 import pages.saucedemo.ProductPage;
 
@@ -19,6 +20,7 @@ public abstract class BaseTest {
 
     protected LoginPage loginPage;
     protected ProductPage productPage;
+    protected CartPage cartPage;
 
     @BeforeMethod
     public void setUp() {
@@ -31,6 +33,7 @@ public abstract class BaseTest {
 
         loginPage = new LoginPage(driver, wait);
         productPage = new ProductPage(driver, wait);
+        cartPage = new CartPage(driver, wait);
     }
 
     @AfterMethod
