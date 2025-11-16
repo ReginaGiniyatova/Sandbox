@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CartBadge {
-    private final static By CART = new By.ByCssSelector("#shopping_cart_container");
-    private final static By CART_COUNTER = new By.ByCssSelector("span[data-test='shopping-cart-badge']");
+    private final By CART = By.cssSelector("#shopping_cart_container");
+    private final By CART_COUNTER = By.cssSelector("span[data-test='shopping-cart-badge']");
 
     private WebDriver driver;
 

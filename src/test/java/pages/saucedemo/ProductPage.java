@@ -9,9 +9,9 @@ import pages.saucedemo.header.Header;
 
 public class ProductPage extends BasePage {
 
-    private final static By PRODUCT_TITLE = new By.ByCssSelector("span[data-test='title']");
     private final static String PRODUCT_ADD_CART = "//div[text()='%s']//ancestor::div[@class='inventory_item_description']//button[text()='Add to cart']";
     private final static String PRODUCT_REMOVE_CART = "//div[text()='%s']//ancestor::div[@class='inventory_item_description']//button[text()='Remove']";
+    private final By PRODUCT_TITLE = By.cssSelector("span[data-test='title']");
 
     private Header header;
 
@@ -34,12 +34,12 @@ public class ProductPage extends BasePage {
     }
 
     public void addToCart(String name) {
-        WebElement addBtn = driver.findElement(new By.ByXPath(PRODUCT_ADD_CART.formatted(name)));
+        WebElement addBtn = driver.findElement(By.xpath(PRODUCT_ADD_CART.formatted(name)));
         addBtn.click();
     }
 
     public void removeFromCart(String name) {
-        WebElement removeBtn = driver.findElement(new By.ByXPath(PRODUCT_REMOVE_CART.formatted(name)));
+        WebElement removeBtn = driver.findElement(By.xpath(PRODUCT_REMOVE_CART.formatted(name)));
         removeBtn.click();
     }
 
