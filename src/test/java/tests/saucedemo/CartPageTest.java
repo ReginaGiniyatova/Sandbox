@@ -1,18 +1,15 @@
 package tests.saucedemo;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
+import org.testng.annotations.*;
 import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
 public class CartPageTest extends BaseTest {
+    @Parameters({"browser"})
     @BeforeMethod
     @Override
-    public void setUp() {
-        super.setUp();
+    public void setUp(@Optional("chrome") String browser) {
+        super.setUp(browser);
 
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");

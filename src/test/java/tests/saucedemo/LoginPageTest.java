@@ -1,16 +1,14 @@
 package tests.saucedemo;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
+import org.testng.annotations.*;
 import static org.testng.AssertJUnit.*;
 
 public class LoginPageTest extends BaseTest {
+    @Parameters({"browser"})
     @BeforeMethod
     @Override
-    public void setUp() {
-        super.setUp();
+    public void setUp(@Optional("chrome") String browser) {
+        super.setUp(browser);
         loginPage.openPage();
     }
 

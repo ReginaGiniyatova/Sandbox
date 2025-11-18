@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="Sandbox" parallel="classes">
+
+    <test name="Chrome">
+        <classes>
+            <class name="tests.saucedemo.LoginPageTest"/>
+            <class name="tests.saucedemo.CartPageTest"/>
+            <class name="tests.saucedemo.ProductPageTest"/>
+
+            <parameter name="browser" value="chrome" />
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Firefox">
+        <classes>
+            <class name="tests.saucedemo.LoginPageTest"/>
+            <class name="tests.saucedemo.CartPageTest"/>
+            <class name="tests.saucedemo.ProductPageTest"/>
+
+            <parameter name="browser" value="firefox" />
+        </classes>
+    </test>
+    <!-- Test -->
+</suite>

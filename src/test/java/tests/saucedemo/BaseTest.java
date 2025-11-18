@@ -1,17 +1,16 @@
 package tests.saucedemo;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.internal.collections.Pair;
 import pages.saucedemo.CartPage;
 import pages.saucedemo.LoginPage;
 import pages.saucedemo.ProductPage;
-
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
+import utils.WebDriverFactory;
 
 public abstract class BaseTest {
 
@@ -22,14 +21,13 @@ public abstract class BaseTest {
     protected ProductPage productPage;
     protected CartPage cartPage;
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp() {
-        ChromeOptions opt = new ChromeOptions();
-        opt.addArguments("--guest");
-        opt.addArguments("--start-maximized");
+    public void setUp(@Optional("chrome") String browser) {
+        Pair<WebDriver, WebDriverWait> driverPair = WebDriverFactory.createDriver(browser);
 
-        driver = new ChromeDriver(opt);
-        wait = new WebDriverWait(driver, Duration.of(5000, ChronoUnit.MILLIS));
+        driver = driverPair.first();
+        wait = driverPair.second();
 
         loginPage = new LoginPage(driver, wait);
         productPage = new ProductPage(driver, wait);
