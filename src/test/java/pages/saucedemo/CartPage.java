@@ -22,7 +22,10 @@ public class CartPage extends BasePage {
     public List<String> getProductsName() {
         List<WebElement> productsName = driver.findElements(PRODUCTS_NAME);
 
-        return productsName.stream().map(WebElement::getText).toList();
+        return productsName
+                .stream()
+                .map(WebElement::getText)
+                .toList();
     }
 }
 

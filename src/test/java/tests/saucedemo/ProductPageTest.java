@@ -32,7 +32,6 @@ public class ProductPageTest extends BaseTest {
         assertEquals(productPage.getHeader().getCartBadge().getCartItemCount(), productNames.size());
     }
 
-
     @Test(dataProvider = "productsData")
     public void removeAllAddedProducts(List<String> productsNames) {
         productPage.addToCart(productsNames);
