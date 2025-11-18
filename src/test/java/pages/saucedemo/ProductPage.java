@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.saucedemo.header.Header;
 
+import java.util.List;
+
 public class ProductPage extends BasePage {
 
     private final static String PRODUCT_ADD_CART = "//div[text()='%s']//ancestor::div[@class='inventory_item_description']//button[text()='Add to cart']";
@@ -41,6 +43,18 @@ public class ProductPage extends BasePage {
     public void removeFromCart(String name) {
         WebElement removeBtn = driver.findElement(By.xpath(PRODUCT_REMOVE_CART.formatted(name)));
         removeBtn.click();
+    }
+
+    public void addToCart(List<String> names) {
+        for(String name : names) {
+            addToCart(name);
+        }
+    }
+
+    public void removeFromCart(List<String> names) {
+        for(String name : names) {
+            removeFromCart(name);
+        }
     }
 
     public Header getHeader() {
