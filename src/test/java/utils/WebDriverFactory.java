@@ -7,17 +7,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.internal.collections.Pair;
-
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 
 public class WebDriverFactory {
 
-    public static Pair<WebDriver, WebDriverWait> createDriver(String browser) {
+    public static WebDriver createDriver(String browser) {
         WebDriver driver;
-        WebDriverWait wait;
 
         switch (browser.toLowerCase()) {
             case "firefox": {
@@ -26,7 +20,6 @@ public class WebDriverFactory {
                 options.addArguments("--guest");
 
                 driver = new FirefoxDriver(options);
-                wait = new WebDriverWait(driver, Duration.of(5, ChronoUnit.SECONDS));
 
                 break;
             }
@@ -34,7 +27,6 @@ public class WebDriverFactory {
                 SafariOptions options = new SafariOptions();
 
                 driver = new SafariDriver(options);
-                wait = new WebDriverWait(driver, Duration.of(5, ChronoUnit.SECONDS));
 
                 break;
             }
@@ -45,12 +37,11 @@ public class WebDriverFactory {
                 options.addArguments("--guest");
 
                 driver = new ChromeDriver(options);
-                wait = new WebDriverWait(driver, Duration.of(5, ChronoUnit.SECONDS));
 
                 break;
             }
         }
 
-        return new Pair<>(driver, wait);
+        return driver;
     }
 }
