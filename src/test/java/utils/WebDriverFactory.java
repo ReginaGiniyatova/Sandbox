@@ -1,0 +1,47 @@
+package utils;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
+
+public class WebDriverFactory {
+
+    public static WebDriver createDriver(String browser) {
+        WebDriver driver;
+
+        switch (browser.toLowerCase()) {
+            case "firefox": {
+                FirefoxOptions options = new FirefoxOptions();
+                options.addArguments("--start-maximized");
+                options.addArguments("--guest");
+
+                driver = new FirefoxDriver(options);
+
+                break;
+            }
+            case "safari": {
+                SafariOptions options = new SafariOptions();
+
+                driver = new SafariDriver(options);
+
+                break;
+            }
+            case "chrome":
+            default: {
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--start-maximized");
+                options.addArguments("--guest");
+
+                driver = new ChromeDriver(options);
+
+                break;
+            }
+        }
+
+        return driver;
+    }
+}
