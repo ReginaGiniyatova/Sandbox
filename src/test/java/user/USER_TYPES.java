@@ -1,0 +1,13 @@
+package user;
+
+public enum USER_TYPES {
+    STANDARD,
+    LOCKED,
+    PROBLEM,
+    PERFORMANCE_GLITCH,
+    ERROR,
+    VISUAL,
+    LOGIN_BLANK,
+    PASSWORD_BLANK,
+    INCORRECT
+}

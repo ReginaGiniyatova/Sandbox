@@ -1,6 +1,11 @@
 package tests.saucedemo;
 
 import org.testng.annotations.*;
+import user.USER_TYPES;
+import user.User;
+import user.UserFactory;
+import utils.PropertyReader;
+
 import static org.testng.AssertJUnit.*;
 
 public class LoginPageTest extends BaseTest {
@@ -14,23 +19,23 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     public void validLoginTest() {
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(UserFactory.create(USER_TYPES.STANDARD));
         assertTrue(productPage.hasProductTitle());
     }
 
     @DataProvider()
     public Object[][] loginData() {
         return new Object[][] {
-                {"marpha", "the_cat", "Epic sadface: Username and password do not match any user in this service"},
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"standard_user", "", "Epic sadface: Password is required"},
-                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."}
+                {UserFactory.create(USER_TYPES.INCORRECT), PropertyReader.getProperty("saucedemo.messages.login_password_incorrect")},
+                {UserFactory.create(USER_TYPES.LOGIN_BLANK), PropertyReader.getProperty("saucedemo.messages.login_required")},
+                {UserFactory.create(USER_TYPES.PASSWORD_BLANK), PropertyReader.getProperty("saucedemo.messages.password_required")},
+                {UserFactory.create(USER_TYPES.LOCKED), PropertyReader.getProperty("saucedemo.messages.locked_user")}
         };
     }
 
     @Test(dataProvider = "loginData")
-    public void invalidLoginTest(String name, String password, String errorMsg) {
-        loginPage.login(name, password);
+    public void invalidLoginTest(User user, String errorMsg) {
+        loginPage.login(user);
         assertEquals(loginPage.getErrorMsg(), errorMsg);
     }
 }

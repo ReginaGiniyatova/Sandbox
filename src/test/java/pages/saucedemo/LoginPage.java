@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import user.User;
 
 public class LoginPage extends BasePage {
 
@@ -18,13 +19,13 @@ public class LoginPage extends BasePage {
         super(driver, wait);
     }
 
-    public void login(String username, String password) {
+    public void login(User user) {
         WebElement usernameInput = driver.findElement(USERNAME);
         WebElement passwordInput = driver.findElement(PASSWORD);
         WebElement loginBtn = driver.findElement(LOGIN_BTN);
 
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
+        usernameInput.sendKeys(user.getLogin());
+        passwordInput.sendKeys(user.getPassword());
         loginBtn.click();
     }
 
