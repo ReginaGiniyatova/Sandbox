@@ -1,6 +1,9 @@
 package tests.saucedemo;
 
 import org.testng.annotations.*;
+import user.USER_TYPES;
+import user.UserFactory;
+
 import java.util.List;
 import static org.testng.Assert.assertEquals;
 
@@ -12,7 +15,7 @@ public class CartPageTest extends BaseTest {
         super.setUp(browser);
 
         loginPage.openPage();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(UserFactory.create(USER_TYPES.STANDARD));
     }
 
     @DataProvider
