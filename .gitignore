@@ -2,4 +2,5 @@
 target/
 build/
 src/test/resources/config.properties
+.allure
 *.iml
