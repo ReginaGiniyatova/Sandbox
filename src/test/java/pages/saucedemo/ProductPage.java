@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.saucedemo.header.Header;
+import user.USER_TYPES;
+import user.UserFactory;
 
 import java.util.List;
 
@@ -24,7 +26,12 @@ public class ProductPage extends BasePage {
     }
 
     @Override
-    public void openPage() {}
+    public void openPage() {
+        LoginPage loginPage = new LoginPage(driver, wait);
+
+        loginPage.openPage();
+        loginPage.login(UserFactory.create(USER_TYPES.STANDARD));
+    }
 
     @Step("Проверка нахождения на странице со списком товаров")
     public boolean hasProductTitle() {

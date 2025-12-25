@@ -5,8 +5,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import user.USER_TYPES;
-import user.UserFactory;
 import utils.TestDataProvider;
 
 import java.util.List;
@@ -19,8 +17,7 @@ public class ProductPageTest extends BaseTest {
     public void setUp(@Optional("chrome") String browser, ITestContext context) {
         super.setUp(browser, context);
 
-        loginPage.openPage();
-        loginPage.login(UserFactory.create(USER_TYPES.STANDARD));
+        productPage.openPage();
     }
 
     @Epic("Модуль списка товаров интернет-магазина")
