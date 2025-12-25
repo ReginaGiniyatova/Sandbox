@@ -1,5 +1,6 @@
 package pages.saucedemo.header;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ public class CartBadge {
         this.driver = driver;
     }
 
+    @Step("Проверяем число товаров на значке корзины в хедере сайта")
     public int getCartItemCount() {
         try {
             WebElement counter = driver.findElement(CART_COUNTER);
@@ -24,6 +26,7 @@ public class CartBadge {
         }
     }
 
+    @Step("Кликаем по значку корзины в хедере сайта")
     public void click() {
         WebElement cart = driver.findElement(CART);
         cart.click();

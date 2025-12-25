@@ -1,5 +1,6 @@
 package pages.saucedemo;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -23,9 +24,9 @@ public class ProductPage extends BasePage {
     }
 
     @Override
-    public void openPage() {
-    }
+    public void openPage() {}
 
+    @Step("Проверка нахождения на странице со списком товаров")
     public boolean hasProductTitle() {
         try {
             WebElement title = driver.findElement(PRODUCT_TITLE);
@@ -35,11 +36,13 @@ public class ProductPage extends BasePage {
         }
     }
 
+    @Step("Добавление в корзину товара: {name}")
     public void addToCart(String name) {
         WebElement addBtn = driver.findElement(By.xpath(PRODUCT_ADD_CART.formatted(name)));
         addBtn.click();
     }
 
+    @Step("Удаление из корзины товара: {name}")
     public void removeFromCart(String name) {
         WebElement removeBtn = driver.findElement(By.xpath(PRODUCT_REMOVE_CART.formatted(name)));
         removeBtn.click();

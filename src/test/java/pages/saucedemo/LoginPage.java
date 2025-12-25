@@ -1,5 +1,6 @@
 package pages.saucedemo;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,21 +20,38 @@ public class LoginPage extends BasePage {
         super(driver, wait);
     }
 
+    @Step("Начинаем процесс авторизации пользователя")
     public void login(User user) {
-        WebElement usernameInput = driver.findElement(USERNAME);
-        WebElement passwordInput = driver.findElement(PASSWORD);
-        WebElement loginBtn = driver.findElement(LOGIN_BTN);
+        fillLoginInput(user.getLogin());
+        fillPasswordInput(user.getPassword());
+        clickLoginButton();
+    }
 
-        usernameInput.sendKeys(user.getLogin());
-        passwordInput.sendKeys(user.getPassword());
+    @Step("Вводим логин пользователя: {login}")
+    private void fillLoginInput(String login) {
+        WebElement usernameInput = driver.findElement(USERNAME);
+        usernameInput.sendKeys(login);
+    }
+
+    @Step("Вводим пароль пользовател: {password}")
+    private void fillPasswordInput(String password) {
+        WebElement passwordInput = driver.findElement(PASSWORD);
+        passwordInput.sendKeys(password);
+    }
+
+    @Step("Нажимаем кнопку 'Login'")
+    private void clickLoginButton() {
+        WebElement loginBtn = driver.findElement(LOGIN_BTN);
         loginBtn.click();
     }
 
+    @Step("Проверяем сообщение об ошибке")
     public String getErrorMsg() {
         WebElement errorMsg = driver.findElement(ERROR_MSG);
         return wait.until(ExpectedConditions.visibilityOf(errorMsg)).getText();
     }
 
+    @Step("Открываем страницу авторизации")
     @Override
     public void openPage() {
         if(driver != null)
