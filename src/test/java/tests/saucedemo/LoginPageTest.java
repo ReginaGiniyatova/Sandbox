@@ -8,7 +8,6 @@ import org.testng.annotations.*;
 import user.USER_TYPES;
 import user.User;
 import user.UserFactory;
-import utils.PropertyReader;
 import utils.TestDataProvider;
 
 import static org.testng.AssertJUnit.*;

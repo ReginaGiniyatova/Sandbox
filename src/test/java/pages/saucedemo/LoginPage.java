@@ -21,10 +21,12 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Начинаем процесс авторизации пользователя")
-    public void login(User user) {
+    public ProductPage login(User user) {
         fillLoginInput(user.getLogin());
         fillPasswordInput(user.getPassword());
         clickLoginButton();
+
+        return new ProductPage(driver, wait);
     }
 
     @Step("Вводим логин пользователя: {login}")

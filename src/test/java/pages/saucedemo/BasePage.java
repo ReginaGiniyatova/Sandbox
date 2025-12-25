@@ -13,9 +13,4 @@ public abstract class BasePage {
     }
 
     abstract public void openPage();
-
-    public void close() {
-        if(driver != null)
-            driver.quit();
-    }
 }
